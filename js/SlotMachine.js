@@ -34,7 +34,7 @@
       const main = document.querySelector("main");
       main.appendChild(section);
     }
-
+    
     getRandomImage() {
       const images = [
         "../img/seven.png",

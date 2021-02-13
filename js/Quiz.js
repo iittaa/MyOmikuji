@@ -57,7 +57,6 @@
       li.textContent = choice;
       li.addEventListener("click", () => {
         checkAnswer(li);
-
       });
       choices.appendChild(li);
     });
