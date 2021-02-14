@@ -23,11 +23,13 @@
         </li>
       </ul>
 
+
       <!-- イベントの書き方(v-on 省略は@) -->
       <div>{{ counter }}</div>
       <div>
         <button @click="increment">1を足す</button>
       </div>
+   
       
       <!-- 属性バインディング(v-bind 省略は:) -->
       <img :src="imagepath" :width="width">
@@ -36,6 +38,7 @@
         <button @click="clickcat">ねこ</button>
         <button @click="wideimage">幅を600pxにする</button>
       </div>
+
 
       <!-- class属性のバインディング -->
       <div :class="styleObject">これは警告です</div>
@@ -52,74 +55,27 @@
       </div>
 
 
-    </div>
+      <!-- フォーム入力のバインディング(v-model) -->
+      <input type="text" v-model="persons[0].name">
+      <textarea v-model="article"></textarea>
+      <pre>{{ article }}</pre>
+      
+      <input type="checkbox" v-model="agree" value=1>音楽<br>
+      <input type="checkbox" v-model="agree" value=2>映画<br>
+      <input type="checkbox" v-model="agree" value=3>スポーツ<br>
+      <p>{{ agree }}</p>
+      
+      <input type="radio"  value=1>音楽<br>
+      <input type="radio"  value=2>映画<br>
+      <input type="radio"  value=3>スポーツ<br>
+      
+      <h1>趣味は？</h1>
+      <select v-model="selected">
+        <option v-for="friend in friends" :value="friend.name">{{ friend.name }}</option>
+      </select>
+      <p>{{ selected }}</p>
 
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-    <script>
-      new Vue({
-        el: "#app",
-        methods: {
-          increment: function(){
-            this.counter++;
-          },
-          clickdog: function(){
-            this.imagepath = "https://tk.ismcdn.jp/mwimgs/e/b/1140/img_eb31afc9c1fb914d68a7c73b657c7ebe183087.jpg";
-          },
-          clickcat: function(){
-            this.imagepath = "https://dol.ismcdn.jp/mwimgs/a/f/-/img_afa0fad37e6c4d5ce34c01faf54f9e79108563.jpg";
-          },
-          wideimage: function(){
-            this.width = "600px"; 
-          },
-          devide: function(){
-            // boolean値をひっくり返す「!」
-            this.styleObject.warning = !this.styleObject.warning;
-          },
-          change: function() {
-            this.formDisplay = !this.formDisplay
-          }
-          
-        },
-        data: {
-          formDisplay: "false",
-          warningClass: "warning1",
-          styleObject: {
-            warning: false,
-          },
-          url: "https://jp.vuejs.org/v2/guide/",
-          counter: 0,
-          imagepath: "",
-          width: "300px",
-          persons: [
-            {
-            name : "吉田",
-            age : 24,
-            address: {
-              prefecture: "埼玉県",
-              city: "所沢市",
-              town: "上新井",
-            }
-          },
-            {
-            name : "佐藤",
-            age : 24,
-            address: {
-              prefecture: "埼玉県",
-              city: "所沢市",
-              town: "上新井",
-            }
-          },
-            {
-            name : "鈴木",
-            age : 24,
-            address: {
-              prefecture: "埼玉県",
-              city: "所沢市",
-              town: "上新井",
-            }
-          },
-        ]
-        }
-      })
-    </script>
+    <script src="../js/vuejs.js"></script>
   </body>

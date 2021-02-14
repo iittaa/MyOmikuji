@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>じゃんけんゲーム</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- 敵の手 -->
+      <h1>
+        {{ result }}
+      </h1>
+      <div>
+        <img :src="enemyHandImage">
+      </div>
+      <!-- 自分の手 -->
+      <button @click="fight('goo')">グー</button>
+      <button @click="fight('choki')">チョキ</button>
+      <button @click="fight('paa')">パー</button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          hand: ["goo", "choki", "paa"],
+          enemyHand: "",
+          enemyHandImage: "",
+          result: "いざ勝負！",
+        },
+        methods: {
+          fight: function(myHand){
+            // 敵の手をランダムに決める
+            let i = Math.floor(Math.random() * 3);
+            this.enemyHand = this.hand[i];
+            if (this.enemyHand === "goo") {
+              this.enemyHandImage = "https://www.silhouette-illust.com/wp-content/uploads/2016/11/17390-300x300.jpg";
+            } else if (this.enemyHand === "choki") {
+              this.enemyHandImage = "https://www.jpn-sports.com/higashi_blog/wp-content/uploads/2019/03/%E3%83%81%E3%83%A7%E3%82%AD2.jpg";
+            } else {
+              this.enemyHandImage = "https://www.silhouette-illust.com/wp-content/uploads/2016/11/17431-300x300.jpg";
+            }
+            console.log(`敵の手:${this.enemyHand}`)
+            console.log(`自分の手:${myHand}`)
+            // 自分の手と敵の手を比較する
+            // 引き分け判定
+            if (this.enemyHand === myHand){
+              console.log("引き分け");
+              this.result = "引き分け"
+            }
+            // 勝ち判定
+            if (this.enemyHand === "goo" && myHand === "paa") {
+              console.log("勝ち");
+              this.result = "勝ち！";
+            }
+            if (this.enemyHand === "choki" && myHand === "goo") {
+              console.log("勝ち");
+              this.result = "勝ち！";
+            }
+            if (this.enemyHand === "paa" && myHand === "choki") {
+              console.log("勝ち");
+              this.result = "勝ち！";
+            }
+            // 負け判定
+            if (this.enemyHand === "goo" && myHand === "choki") {
+              console.log("負け...");
+              this.result = "負け..."
+            }
+            if (this.enemyHand === "choki" && myHand === "paa") {
+              console.log("負け...");
+              this.result = "負け...";
+            }
+            if (this.enemyHand === "paa" && myHand === "goo") {
+              console.log("負け...");
+              this.result = "負け...";
+            }
+          }
+        }
+      })
+    </script>
+  </body>
+</html>
